@@ -114,20 +114,20 @@ One can easily redirect:
 
 How to use the session scope, the counter Example: (separation of logic and view)
 logic.jssp:
-<?
-	var counter = 1;
-	session.get("counter",function(value){
-		log.debug("SESSIONLOGIC.JSSP, value - " +value);
-		if(value == undefined){
-			session.set("counter",1);
-		}else{
-			counter = value+1;
-			session.set("counter",counter);
-		}
-		request.parameters.counter = counter;
-		commands.forward("counter/view.jssp");				
-	});				
-?>
+	<?
+		var counter = 1;
+		session.get("counter",function(value){
+			log.debug("SESSIONLOGIC.JSSP, value - " +value);
+			if(value == undefined){
+				session.set("counter",1);
+			}else{
+				counter = value+1;
+				session.set("counter",counter);
+			}
+			request.parameters.counter = counter;
+			commands.forward("counter/view.jssp");				
+		});				
+	?>
 view.jssp:
 	<HTML>
 		<HEAD><TITLE>Application Scope Counter Tester</TITLE></HEAD>
