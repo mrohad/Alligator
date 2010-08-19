@@ -9,7 +9,8 @@
 			session.set("counter",counter);
 		}
 		request.parameters.counter = counter;
-		commands.forward("counter/view.jssp");				
+		commands.forward("counter/view.jssp");	
+		d			
 	});				
 
 })

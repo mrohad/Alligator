@@ -54,18 +54,19 @@ Explanation of properties:
 - `server_script.begin` - the beginning tag for server-side scripting (default = <?)
 - `server_script.end` - the end tag for server-side scripting (default = ?>)
 - `server_script.session_minutes` - session timeout after X minutes (default = 30)
-- `server_script.memcached` - integration with memcached (Under construction)
+- `server_script.memcached` - integration with memcached 
 - `debug_mode` - 1 for debug mode, 0 for non-debug mode, on debug mode we add the exception to the response + the log level = debug
-- `nodes` - number of process running this application server( currently we don't support shared memory - under construction)
+- `nodes` - number of process running this application server ** currently we support shared memory using memcached! we recommand to set the number of nodes as the number of cores
 
 
 
 # Features
 - Handling request parameters easily (for GET and POST)
-- Session management, including timeout
-- Application scope management
+- Distributed session management, including timeout
+- Distributed application scope management
 - Dynamic js loader (the lib folder)
 - User can set the server-side script begin and end tags
+- Utilizing all the cores per cpu (the `nodes` settings parameter)
 
 When one is writing a script nested to the <? some;JavaScript;Code;In Here;?> tags
 
@@ -75,13 +76,14 @@ He/She can use the following implicit functions/variables:
 - `request.parameters` to read and write request post/get parameters
 - `responseHead.header` to add headers of the response (e.g. responseHead.header["set-cookie"] = "..";)
 - `responseHead.status` to change the HTTP response status
-- `write(str)` to add string to the response body (or instead one can use the <?=str?> tag)
-- `forward(other.jssp)` to forward the request and response to another server-side resource
-- `sendRedirect(url)` to send HTTP redirect response back to the client
+- `commands.write(str)` to add string to the response body (or instead one can use the <?=str?> tag)
+- `commands.forward(other.jssp)` to forward the request and response to another server-side resource
+- `commands.sendRedirect(url)` to send HTTP redirect response back to the client
 - `lib.filename.member` to access whatever lib one has loaded 
-- `session.put(key,value)` to put anything on the HttpSession
-- `session.get(key)` to get anything from the HttpSession
-- `application.someparam` to get someParam from the application scope
+- `session.set(key,value,callbackFunc)` to put anything on the HttpSession
+- `session.get(key,callbackFunc)` to get anything from the HttpSession
+- `application.set(key,value,callbackFunc)` to put anything on the application context
+- `application.get(key,callbackFunc)` to get anything from the application context
 
 
 
@@ -95,7 +97,7 @@ Once can achieve the same thing using Ex2.jssp
 	<? var a = 1+1;?><br/>
 	<?=a?>
 
-Once can forward from one jssp to another:
+One can forward from one jssp to another:
 Exf1.jssp:
 	<? var dbInfo= gettingInfoFromDatabase();
 	   request.parameters.db = dbInfo;
@@ -110,8 +112,41 @@ One can easily redirect:
 	<H1> Welcome...</H1>
 	<?}?>
 
+How to use the session scope, the counter Example: (separation of logic and view)
+logic.jssp:
+<?
+	var counter = 1;
+	session.get("counter",function(value){
+		log.debug("SESSIONLOGIC.JSSP, value - " +value);
+		if(value == undefined){
+			session.set("counter",1);
+		}else{
+			counter = value+1;
+			session.set("counter",counter);
+		}
+		request.parameters.counter = counter;
+		commands.forward("counter/view.jssp");				
+	});				
+?>
+view.jssp:
+	<HTML>
+		<HEAD><TITLE>Application Scope Counter Tester</TITLE></HEAD>
+		<BODY>
+		<?
+			var counter = request.parameters.counter;
+			if(counter==1)
+				commands.write("First Time");
+			else
+				commands.write("Number of hits by you:" + counter);
+				
+		?>
+		</BODY>
+	</HTML>
+	
+In case Memcached is enabled, the application and session contexts are being saved there.
+	
 # Bugs and Contribution
-Please let me know if you find any bug or if you would like to contribute code: mrohad.jsf at gmail
+Please let us know if you find any bug or if you would like to contribute code: mrohad.jsf at gmail
 
 Known Bugs - http://github.com/mrohad/Alligator/blob/master/knowBugs.txt
 
