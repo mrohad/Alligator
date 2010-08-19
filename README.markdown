@@ -99,13 +99,13 @@ Once can forward from one jssp to another:
 Exf1.jssp:
 	<? var dbInfo= gettingInfoFromDatabase();
 	   request.parameters.db = dbInfo;
-           forward("showTable.jssp");?>
+           commands.forward("showTable.jssp");?>
 showTable.jssp:
 	<?=genetrateHTMLTable(request.parameters.db)?>
 
 One can easily redirect:
 	<? if(request.parameters.googleIt=="true")
-		sendRedirect("http://www.google.com");
+		commands.sendRedirect("http://www.google.com");
 	else{>
 	<H1> Welcome...</H1>
 	<?}?>
