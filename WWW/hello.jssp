@@ -1,0 +1,38 @@
+<HTML>
+		<?="<head><title>nodeJS and antiNode+</title></head>"?>
+	<BODY>
+		<?
+			var counter = 1;
+			application.get("counter",function(value){
+				log.debug("HELLO.JSSP, value - " +value);
+				if(value == undefined)	
+					application.set("counter",1);
+				else{
+					counter = value+1;
+					application.set("counter",counter);			
+				}
+			});				
+		?>
+		HELLO WORLD<br/>
+		Number of users:
+		<? 
+			write(counter+"<br/>");	
+		?>
+			<br/>request.parameters.night: <?=request.parameters.night?></br>
+		<?	if(request.parameters.night != undefined && request.parameters.night=="1"){
+		?>
+		Good night! 
+		<?}else{?>
+		Good Day!
+		<?}?>
+		<br/>
+		<?for (index=0;index<5;index++){ commands.write(index);?>;<? }?>
+		<br/>
+		Testing the lib:		<br/>
+		Request headers: <?=lib.test.arrayToString(request.headers)?></br>
+		<br/>
+		Setting a cookie a=b using: responseHead.headers["Set-cookie"] = "a=b";<br/>
+		<?responseHead.headers["Set-cookie"] = "a=b";?>
+
+	</BODY>
+</HTML>

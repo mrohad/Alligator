@@ -1,0 +1,33 @@
+Change LOG 0.3
+================================
+Features:
+1) Supports multi-node with session-scope and application-scope utilizing memcached.
+
+BugFixes
+1) bugs with static files support
+ 
+
+Change LOG 0.29
+================================
+Features:
+1) Compiling each JSSP file to JS file, upon a second use it evals/requires(the js file).
+
+BugFixes
+1) forward() is now working again
+
+Change LOG 0.28
+================================
+Features:
+1) Error details, on debug_mode Alligator generates a file by the name debugging.js, and add the error line to the response.
+
+
+
+
+
+Change LOG 0.27
+================================
+Features:
+1) multinode support - no shared memory yet
+
+BugFixes
+1) One can now write a server-side script with comments (//)

@@ -1,0 +1,27 @@
+<HTML>
+		<?="<head><title>Application Scope Counter Tester</title></head>"?>
+	<BODY>
+		<?
+			var counter = 1;
+			application.get("counter",function(value){
+				log.debug("COUNTER.JSSP, value - " +value);
+				if(value == undefined){
+					application.set("counter",1);
+		?>
+		First Time;
+					
+				<?}else{
+					counter = value+1;
+					application.set("counter",counter);
+		?>
+		
+		Number of users : <?=counter?>
+				
+		<?}?>
+		
+		</BODY>
+</HTML>
+					
+				
+			<?});				
+		?>

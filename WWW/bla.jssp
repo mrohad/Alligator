@@ -1,0 +1,29 @@
+<HTML>
+		<? 
+			write("<head><title>nodeJS</title></head>");			
+		?>
+	<BODY>
+		<?
+			if(application.counter == undefined)	
+				application.counter=1;
+			else{
+				application.counter+=1;
+				write(lib.test.abc);			
+			}				
+		?>
+		HELLO WORLD<br/>
+		Number of users:
+		<? 
+			write(application.counter+"<br/>");	
+			if(request.parameters.asas != undefined && request.parameters.asas=="1"){
+		?>
+		YES!
+		<?}?>
+		<?for (index=0;index<5;index++){ write(index);?>;<? }?>
+		<br/>
+		By Ohad a
+		<?
+		session.put("a",1);
+		?>
+	</BODY>
+</HTML>

@@ -1,0 +1,29 @@
+{ "name" : "Alligator"
+, "description" : "A simple application server for node.js"
+, "version" : "0.3"
+, "author" : "Ohad Assulin <mrohad.njs@gmail.com>"
+, "contributors" :
+  [ "Mark Hansen <mark@markhansen.co.nz>"
+  , "Ben Noordhuis <info@bnoordhuis.nl>"
+  , "Hans Huebner <hans.huebner@gmail.com>"
+  , "Noah Sloan <iamnoah@gmail.com>"
+  ]
+, "repository" :
+  { "type" : "git"
+  , "url" : "http://github.com/mrohad/Alligator.git"
+  }
+, "bugs" :
+  { "mail" : "mrohad.njs@gmail.com"
+  , "web" : "http://github.com/mrohad/Alligator/raw/master/knowBugs.txt"
+  }
+, "os" : [ "linux", "darwin", "freebsd" ]
+, "directories" : { "lib" : "./lib/" }
+, "main" : "./lib/antinode"
+, "bin" : { "antinode" : "./alligator.js" }
+, "engines" : { "node" : ">=0.1.99" }
+, "licenses" :
+  [ { "type" : "MIT"
+    , "url" : "http://github.com/mrohad/Alligator/raw/master/LICENSE"
+    }
+  ]
+}

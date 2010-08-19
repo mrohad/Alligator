@@ -1,0 +1,5 @@
+1) enableing multi-node using memcahced
+2) require instead of eval (when loading compiled jssp file)
+3) enabling websockets variables
+4) enableing 2-sides tag (script that runs on both server and client side)
+

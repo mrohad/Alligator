@@ -1,0 +1,4 @@
+1) Currently using eval instead of require (http://groups.google.com/group/nodejs/browse_thread/thread/7a2e409ec970198e)
+2) Crash when memcached crash
+
+ 

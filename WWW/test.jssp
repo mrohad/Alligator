@@ -1,0 +1,13 @@
+<HTML>
+		<head><title>Alligatro test</title></head>
+	<BODY>
+
+		<?	if(request.parameters.night != undefined && request.parameters.night=="1"){?>
+			Good night! 
+		<?}else{?>
+			Hello World!
+		<?}?>
+	
+	<br/>
+	</BODY>
+</HTML>

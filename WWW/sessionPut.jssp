@@ -1,0 +1,3 @@
+<?
+	session.put("x","aaa");
+?>
