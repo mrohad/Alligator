@@ -12,9 +12,9 @@
 				"end":"?>",
 				"session_minutes":1,
 				"memcached":{
-						"enable":1,
+						"enable":0,
 						"server":"localhost",
-						"port":11212
+						"port":11211
 					}
 			 },
 	"debug_mode"   : 1,

@@ -1,0 +1,12 @@
+<HTML>
+	<HEAD><TITLE>Application Scope Counter Tester</TITLE></HEAD>
+	<BODY>
+	<?
+		var counter = request.parameters.counter;
+		if(counter==1)
+			commands.write("First Time");
+		else
+			commands.write("Number of users:" + counter);
+	?>
+	</BODY>
+</HTML>
