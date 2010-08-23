@@ -1,6 +1,6 @@
 { "name" : "Alligator"
 , "description" : "A simple application server for node.js"
-, "version" : "0.3"
+, "version" : "0.35"
 , "author" : "Ohad Assulin <mrohad.njs@gmail.com>"
 , "contributors" :
   [ "Mark Hansen <mark@markhansen.co.nz>"

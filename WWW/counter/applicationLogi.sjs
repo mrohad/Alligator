@@ -1,0 +1,12 @@
+commands.writeEscapedText("var%20counter%20%3D%201%3B%0A");
+commands.writeEscapedText("application.get%28%22counter%22%2Cfunction%28value%29%7B%0A");
+commands.writeEscapedText("%09log.debug%28%22ApplicationLOGIC.JSSP%2C%20value%20-%20%22%20+value%29%3B%0A");
+commands.writeEscapedText("%09if%28value%20%3D%3D%20undefined%29%7B%0A");
+commands.writeEscapedText("%09%09application.set%28%22counter%22%2C1%29%3B%0A");
+commands.writeEscapedText("%09%7Delse%7B%0A");
+commands.writeEscapedText("%09%09counter%20%3D%20value+1%3B%0A");
+commands.writeEscapedText("%09%09application.set%28%22counter%22%2Ccounter%29%3B%0A");
+commands.writeEscapedText("%09%7D%0A");
+commands.writeEscapedText("%09request.parameters.counter%20%3D%20counter%3B%0A");
+commands.writeEscapedText("%09commands.forward%28%22counter/view.jssp%22%29%3B%09%09%09%09%0A");
+commands.writeEscapedText("%7D%29%3B%09%09%09%09%0A");

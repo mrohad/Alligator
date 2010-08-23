@@ -1,3 +1,15 @@
+Change LOG 0.35
+================================
+Features:
+1) Support script only file (SJS)
+2) Performance improvements
+	2.1) Cache Eval Functions
+	2.2) prototyping
+
+3) Support for NodeJS 0.2 has been verified
+
+
+
 Change LOG 0.3
 ================================
 Features:
@@ -7,6 +19,8 @@ BugFixes
 1) bugs with static files support
  
 
+
+
 Change LOG 0.29
 ================================
 Features:
@@ -14,6 +28,8 @@ Features:
 
 BugFixes
 1) forward() is now working again
+
+
 
 Change LOG 0.28
 ================================

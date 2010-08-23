@@ -1,6 +1,6 @@
 Alligator is a simple application server built on top of AntiNode and Node.js 
 
-Latest Version 0.3
+Latest Version 0.35
 
 # Usage
 
@@ -21,26 +21,28 @@ Example settings file:
 
 	{
 		"web_app_name" : "Alligator TestApp",
-		"port"         : 82,
+		"port"         : 8080,
 		"path"         : {
-					"root":"/home/vadmin/Alligator/WWW/",
-					"lib":"/home/vadmin/Alligator/WWWlib/"
+					     	"root" : "/home/vadmin/ws/Alligator/WWW/",
+					     	"lib"  : "/home/vadmin/ws/Alligator/WWWlib/"
 				},
 		"server_script": {
-					"ext":"jssp",
-					"begin":"<?",
-					"begin_additional_write":"=",
-					"end":"?>",
-					"session_minutes":1,
-					"memcached":{
-							"enable":0,
-							"server":"localhost",
-							"port":11211
-						}
-				 },
+					     	 "template_ext"          : "jssp",
+						     "script_ext"            : "sjs",
+						     "begin"                 : "<?",
+						     "begin_additional_write": "=",
+						     "end"                   : "?>",
+	                	     "session_minutes"       : 1,
+					    	 "memcached"             : {
+														   "enable" : 0,
+														   "server" : "localhost",
+														   "port"   :11211
+						                           		}
+				         },
 		"debug_mode"   : 1,
-		"nodes"	       : 2
+		"nodes"	       : 1
 	}
+
 
 This server listens on port 8080 for HTTP requests.
 
@@ -50,7 +52,8 @@ Explanation of properties:
 - `port` - the server listen to this port (default = 80)
 - `path.root` - the root folder for the static and dynamic files (default = WWW)
 - `path.lib` - the folder for JavaScript files that will get loaded automatically - you can access those via lib.fileName.yourStuff (default = None)
-- `server_script.ext` - the extension of files that contains of server-side script (default = jssp)
+- `server_script.template_ext` - the extension of files that contains of server-side template (default = jssp)
+- `server_script.script_ext` - the extension of files that contains of server-side script (default = sjs)
 - `server_script.begin` - the beginning tag for server-side scripting (default = <?)
 - `server_script.end` - the end tag for server-side scripting (default = ?>)
 - `server_script.session_minutes` - session timeout after X minutes (default = 30)
@@ -143,6 +146,22 @@ view.jssp:
 		</BODY>
 	</HTML>
 	
+In case you had like to write JS only you can use a file with the 'script_ext', here is a different way to write logic.jssp
+logic.sjs: (no script tags)
+	var counter = 1;
+	application.get("counter",function(value){
+		log.debug("ApplicationLOGIC.JSSP, value - " +value);
+		if(value == undefined){
+			application.set("counter",1);
+		}else{
+			counter = value+1;
+			application.set("counter",counter);
+		}
+		request.parameters.counter = counter;
+		commands.forward("counter/view.jssp");				
+	});				
+
+
 In case Memcached is enabled, the application and session contexts are being saved there.
 	
 # Bugs and Contribution

@@ -2,21 +2,22 @@
 	"web_app_name" : "Alligator TestApp",
 	"port"         : 82,
 	"path"         : {
-				"root":"/home/vadmin/ws/Alligator/WWW/",
-				"lib":"/home/vadmin/ws/Alligator/WWWlib/"
+				     	"root" : "/home/vadmin/ws/Alligator/WWW/",
+				     	"lib"  : "/home/vadmin/ws/Alligator/WWWlib/"
 			},
 	"server_script": {
-				"ext":"jssp",
-				"begin":"<?",
-				"begin_additional_write":"=",
-				"end":"?>",
-				"session_minutes":1,
-				"memcached":{
-						"enable":0,
-						"server":"localhost",
-						"port":11211
-					}
-			 },
+				     	 "template_ext"          : "jssp",
+					     "script_ext"            : "sjs",
+					     "begin"                 : "<?",
+					     "begin_additional_write": "=",
+					     "end"                   : "?>",
+                	     "session_minutes"       : 1,
+				    	 "memcached"             : {
+													   "enable" : 0,
+													   "server" : "localhost",
+													   "port"   : 11211
+					                           		}
+			         },
 	"debug_mode"   : 1,
 	"nodes"	       : 1
 }

@@ -1,4 +1,4 @@
-(function(log,lib,application,request,responseHead,commands,session) {commands.writeEscapedText("");
+commands.writeEscapedText("");
 	var counter = 1;
 	session.get("counter",function(value){
 		log.debug("SESSIONLOGIC.JSSP, value - " +value);
@@ -12,4 +12,3 @@
 		commands.forward("counter/view.jssp");				
 	});				
 
-})
