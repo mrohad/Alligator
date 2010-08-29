@@ -24,6 +24,7 @@
 						"ASemaphore"	:"ERROR",
 						"Session"		:"ERROR",
 						"Application"	:"ERROR"
+						"Page"			:"DEBUG"
 					},
 	"nodes"	       : 1
 }

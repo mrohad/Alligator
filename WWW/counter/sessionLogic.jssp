@@ -1,7 +1,7 @@
 <?
 	var counter = 1;
 	context.session.get("counter",function(value){
-		context.log.debug("SESSIONLOGIC.JSSP, value - " +value);
+		context.log.debug("Page","SESSIONLOGIC.JSSP, value - " +value);
 		if(value == undefined){
 			context.session.set("counter",1);
 		}else{

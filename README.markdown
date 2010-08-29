@@ -72,7 +72,7 @@ logic.jssp:
 	<?
 		var counter = 1;
 		context.session.get("counter",function(value){
-			context.log.debug("SESSIONLOGIC.JSSP, value - " +value);
+			context.log.debug("Page","SESSIONLOGIC.JSSP, value - " +value);
 			if(value == undefined){
 				context.session.set("counter",1);
 			}else{
@@ -103,7 +103,7 @@ logic.ssjs: (no script tags)
 	this.page = function (context){
 		var counter = 1;
 		context.application.get("counter",function(value){
-			context.log.debug("ApplicationLOGIC.JSSP, value - " +value);
+			context.log.debug("Page","ApplicationLOGIC.JSSP, value - " +value);
 			if(value == undefined){
 				context.application.set("counter",1);
 			}else{
@@ -213,6 +213,7 @@ Example settings file:
 							"ASemaphore"	:"ERROR",
 							"Session"		:"ERROR",
 							"Application"	:"ERROR"
+							"Page"			:"DEBUG"
 						},
 		"nodes"	       : 1
 	}

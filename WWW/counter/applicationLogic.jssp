@@ -1,7 +1,7 @@
 <?
 	var counter = 1;
 	context.application.get("counter",function(value){
-		context.log.debug("ApplicationLOGIC.JSSP, value - " +value);
+		context.log.debug("Page","ApplicationLOGIC.JSSP, value - " +value);
 		if(value == undefined){
 			context.application.set("counter",1);
 		}else{
