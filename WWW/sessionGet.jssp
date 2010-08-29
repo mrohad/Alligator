@@ -1,4 +1,0 @@
-<?
-	write(session.get("x"));
-
-?>
