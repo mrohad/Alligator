@@ -1,5 +1,5 @@
 var fs = require('fs'),
-jssp = require('./lib/jssp'),
+engine = require('./lib/engine'),
 sys = require('sys');
 
 fs.readFile(process.argv[2] || './settings.json', function(err, data) {
@@ -14,7 +14,7 @@ fs.readFile(process.argv[2] || './settings.json', function(err, data) {
             process.exit(1);
         }
     }
-    jssp.start(settings);
+    engine.start(settings);
 });
 
 

@@ -1,0 +1,25 @@
+<?!
+	this.test = function(context){
+		context.write("hello ajax world");
+	};
+?>
+
+<html>
+	<head>
+		<script src="jquery142.js"></script>
+		<script src="alligator.js"></script>
+		<script>
+			function click1(){
+				server("test",function(text){
+					$("#hello").html(text);
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<span id="hello"></span><br/>
+		 <form>
+ 			<input type="button" id="button1" value="click me" onclick="click1()" />
+ 		</form>
+	</body>
+</html>

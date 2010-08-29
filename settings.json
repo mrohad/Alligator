@@ -7,9 +7,10 @@
 			},
 	"server_script": {
 				     	 "template_ext"          : "jssp",
-					     "script_ext"            : "sjs",
+					     "script_ext"            : "ssjs",
 					     "begin"                 : "<?",
-					     "begin_additional_write": "=",
+					     "write" 				 : "=",
+					     "global" 				 : "!",					     
 					     "end"                   : "?>",
                 	     "session_minutes"       : 1,
 				    	 "memcached"             : {

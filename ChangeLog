@@ -1,3 +1,12 @@
+Change LOG 0.37
+================================
+Features:
+1) Now compile into object whereas the main code is nested to the page() function
+2) ability to write code outside the page() function using the <?!code?> tag
+3) add examples to README
+4) commands has been change to context
+
+
 Change LOG 0.35
 ================================
 Features:

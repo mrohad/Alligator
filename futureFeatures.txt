@@ -1,7 +1,7 @@
 1) GZIP and keep-alive
-2) require instead of eval (when loading compiled jssp file)
+2) require instead of new Function (when loading compiled jssp file)
 3) enabling WebSockets variables
 4) enabling 2-sides tag (script that runs on both server and client side)
-5) separation of compiled js and jssp files
+5) separation of compiled js and jssp files to different directories
 6) session - add expire and domain 
 

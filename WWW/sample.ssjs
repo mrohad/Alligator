@@ -1,0 +1,24 @@
+this.page = function (context){context.writeEscapedText("");
+context.writeEscapedText("%3Chtml%3E%0A");
+context.writeEscapedText("%09%3Chead%3E%0A");
+context.writeEscapedText("%09%09%3Cscript%20src%3D%22jquery142.js%22%3E%3C/script%3E%0A");
+context.writeEscapedText("%09%09%3Cscript%20src%3D%22alligator.js%22%3E%3C/script%3E%0A");
+context.writeEscapedText("%09%09%3Cscript%3E%0A");
+context.writeEscapedText("%09%09%09function%20click1%28%29%7B%0A");
+context.writeEscapedText("%09%09%09%09server%28%22test%22%2Cfunction%28text%29%7B%0A");
+context.writeEscapedText("%09%09%09%09%09%24%28%22%23hello%22%29.html%28text%29%3B%0A");
+context.writeEscapedText("%09%09%09%09%7D%29%3B%0A");
+context.writeEscapedText("%09%09%09%7D%0A");
+context.writeEscapedText("%09%09%3C/script%3E%0A");
+context.writeEscapedText("%09%3C/head%3E%0A");
+context.writeEscapedText("%09%3Cbody%3E%0A");
+context.writeEscapedText("%09%09%3Cspan%20id%3D%22hello%22%3E%3C/span%3E%3Cbr/%3E%0A");
+context.writeEscapedText("%09%09%20%3Cform%3E%0A");
+context.writeEscapedText("%20%09%09%09%3Cinput%20type%3D%22button%22%20id%3D%22button1%22%20value%3D%22click%20me%22%20onclick%3D%22click1%28%29%22%20/%3E%0A");
+context.writeEscapedText("%20%09%09%3C/form%3E%0A");
+context.writeEscapedText("%09%3C/body%3E%0A");
+context.writeEscapedText("%3C/html%3E%0A");
+};
+	this.test = function(context){
+		context.write("hello ajax world");
+	};

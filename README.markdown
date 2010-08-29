@@ -1,6 +1,6 @@
 Alligator is a simple application server built on top of AntiNode and Node.js 
 
-Latest Version 0.35
+Latest Version 0.37
 
 # Usage
 
@@ -28,11 +28,11 @@ Example settings file:
 				},
 		"server_script": {
 					     	 "template_ext"          : "jssp",
-						     "script_ext"            : "sjs",
+						     "script_ext"            : "ssjs",
 						     "begin"                 : "<?",
 						     "begin_additional_write": "=",
 						     "end"                   : "?>",
-	                	     "session_minutes"       : 1,
+	                	     "session_minutes"       : 30,
 					    	 "memcached"             : {
 														   "enable" : 0,
 														   "server" : "localhost",
@@ -73,27 +73,27 @@ Explanation of properties:
 
 When one is writing a script nested to the <? some;JavaScript;Code;In Here;?> tags
 
-He/She can use the following implicit functions/variables:
+He/She can use the following implicit functions/variables over the context object:
 
-- `request` for handling the request
-- `request.parameters` to read and write request post/get parameters
-- `responseHead.header` to add headers of the response (e.g. responseHead.header["set-cookie"] = "..";)
-- `responseHead.status` to change the HTTP response status
-- `commands.write(str)` to add string to the response body (or instead one can use the <?=str?> tag)
-- `commands.forward(other.jssp)` to forward the request and response to another server-side resource
-- `commands.sendRedirect(url)` to send HTTP redirect response back to the client
-- `lib.filename.member` to access whatever lib one has loaded 
-- `session.set(key,value,callbackFunc)` to put anything on the HttpSession
-- `session.get(key,callbackFunc)` to get anything from the HttpSession
-- `application.set(key,value,callbackFunc)` to put anything on the application context
-- `application.get(key,callbackFunc)` to get anything from the application context
+- `context.request` for handling the request
+- `context.request.parameters` to read and write request post/get parameters
+- `context.responseHead.header` to add headers of the response (e.g. responseHead.header["set-cookie"] = "..";)
+- `context.responseHead.status` to change the HTTP response status
+- `context.write(str)` to add string to the response body (or instead one can use the <?=str?> tag)
+- `context.forward(other.jssp)` to forward the request and response to another server-side resource
+- `context.sendRedirect(url)` to send HTTP redirect response back to the client
+- `context.lib.filename.member` to access whatever lib one has loaded 
+- `context.session.set(key,value,callbackFunc)` to put anything on the HttpSession
+- `context.session.get(key,callbackFunc)` to get anything from the HttpSession
+- `context.application.set(key,value,callbackFunc)` to put anything on the application context
+- `context.application.get(key,callbackFunc)` to get anything from the application context
 
 
 
 #Examples
 Ex1.jssp:
 	<? var a = 1+1;?><br/>
-	<? write(a);?>
+	<? context.write(a);?>
 Translates to:
 	<br/>2
 Once can achieve the same thing using Ex2.jssp
@@ -103,15 +103,15 @@ Once can achieve the same thing using Ex2.jssp
 One can forward from one jssp to another:
 Exf1.jssp:
 	<? var dbInfo= gettingInfoFromDatabase();
-	   request.parameters.db = dbInfo;
-           commands.forward("showTable.jssp");?>
+	   context.request.parameters.db = dbInfo;
+           context.forward("showTable.jssp");?>
 showTable.jssp:
 	<?=genetrateHTMLTable(request.parameters.db)?>
 
 One can easily redirect:
 	<? if(request.parameters.googleIt=="true")
-		commands.sendRedirect("http://www.google.com");
-	else{>
+		context.sendRedirect("http://www.google.com");
+	else{?>
 	<H1> Welcome...</H1>
 	<?}?>
 
@@ -119,16 +119,16 @@ How to use the session scope, the counter Example: (separation of logic and view
 logic.jssp:
 	<?
 		var counter = 1;
-		session.get("counter",function(value){
-			log.debug("SESSIONLOGIC.JSSP, value - " +value);
+		context.session.get("counter",function(value){
+			context.log.debug("SESSIONLOGIC.JSSP, value - " +value);
 			if(value == undefined){
-				session.set("counter",1);
+				context.session.set("counter",1);
 			}else{
 				counter = value+1;
-				session.set("counter",counter);
+				context.session.set("counter",counter);
 			}
-			request.parameters.counter = counter;
-			commands.forward("counter/view.jssp");				
+			context.request.parameters.counter = counter;
+			context.forward("counter/view.jssp");				
 		});				
 	?>
 view.jssp:
@@ -138,29 +138,37 @@ view.jssp:
 		<?
 			var counter = request.parameters.counter;
 			if(counter==1)
-				commands.write("First Time");
+				context.write("First Time");
 			else
-				commands.write("Number of hits by you:" + counter);
+				context.write("Number of hits by you:" + counter);
 				
 		?>
 		</BODY>
 	</HTML>
 	
 In case you had like to write JS only you can use a file with the 'script_ext', here is a different way to write logic.jssp
-logic.sjs: (no script tags)
-	var counter = 1;
-	application.get("counter",function(value){
-		log.debug("ApplicationLOGIC.JSSP, value - " +value);
-		if(value == undefined){
-			application.set("counter",1);
-		}else{
-			counter = value+1;
-			application.set("counter",counter);
-		}
-		request.parameters.counter = counter;
-		commands.forward("counter/view.jssp");				
-	});				
+logic.ssjs: (no script tags)
+	this.page = function (context){
+		var counter = 1;
+		context.application.get("counter",function(value){
+			context.log.debug("ApplicationLOGIC.JSSP, value - " +value);
+			if(value == undefined){
+				context.application.set("counter",1);
+			}else{
+				counter = value+1;
+				context.application.set("counter",counter);
+			}
+			context.request.parameters.counter = counter;
+			context.forward("counter/view.jssp");				
+		});					
+	
+	}			
 
+
+**Please note that behind the scene Alligator translate JSSP file to SSJS file upon the first request to this JSSP file(lazy)
+**and later on use the SSJS file only.
+**One can develop SSJS files instead of JSSP which makes the translation unnecessary.
+**Alligator invokes the page() function.  
 
 In case Memcached is enabled, the application and session contexts are being saved there.
 	

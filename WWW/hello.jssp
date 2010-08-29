@@ -1,22 +1,2 @@
-<HTML>
-		<?="<head><title>nodeJS and antiNode+</title></head>"?>
-	<BODY>
-
-		HELLO WORLD<br/>
-
-		<br/>request.parameters.night: <?=request.parameters.night?></br>
-		<?	if(request.parameters.night != undefined && request.parameters.night=="1"){
-		?>
-		Good night! 
-		<?}else{?>
-		Good Day!
-		<?}?>
-		<br/>
-		<?for (index=0;index<5;index++){ commands.write(index);?>;<? }?>
-		<br/>
-		Testing the lib:		<br/>
-		Request headers: <?=lib.test.arrayToString(request.headers)?></br>
-		<br/>
-
-	</BODY>
-</HTML>
+night: <?=context.request.parameters.night?context.request.parameters.night:"nothing"?><br/>
+day: <?=context.request.parameters.day?context.request.parameters.day:"nothing"?><br/>
