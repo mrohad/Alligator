@@ -19,6 +19,11 @@
 													   "port"   : 11211
 					                           		}
 			         },
-	"debug_mode"   : 1,
+	"logs"		   :{
+						"Engine"		:"DEBUG",
+						"ASemaphore"	:"ERROR",
+						"Session"		:"ERROR",
+						"Application"	:"ERROR"
+					},
 	"nodes"	       : 1
 }

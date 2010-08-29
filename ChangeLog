@@ -5,6 +5,7 @@ Features:
 2) ability to write code outside the page() function using the <?!code?> tag
 3) add examples to README
 4) commands has been change to context
+5) improvements to the logs module.
 
 
 Change LOG 0.35
