@@ -189,7 +189,7 @@ Example settings file:
 
 	{
 		"web_app_name" : "Alligator TestApp",
-		"port"         : 82,
+		"port"         : 8080,
 		"path"         : {
 					     	"root" : "/home/vadmin/ws/Alligator/WWW/",
 					     	"lib"  : "/home/vadmin/ws/Alligator/WWWlib/"
@@ -208,7 +208,12 @@ Example settings file:
 														   "port"   : 11211
 						                           		}
 				         },
-		"debug_mode"   : 1,
+		"logs"		   :{
+							"Engine"		:"DEBUG",
+							"ASemaphore"	:"ERROR",
+							"Session"		:"ERROR",
+							"Application"	:"ERROR"
+						},
 		"nodes"	       : 1
 	}
 
@@ -230,7 +235,7 @@ Explanation of properties:
 - `server_script.end` - the end tag for server-side scripting (default = '?>')
 - `server_script.session_minutes` - session timeout after X minutes (default = 30)
 - `server_script.memcached` - integration with memcached 
-- `debug_mode` - 1 for debug mode, 0 for non-debug mode, on debug mode we add the exception to the response + the log level = debug
+- `logs` - the log level for each module
 - `nodes` - number of process running this application server ** currently we support shared memory using memcached! we recommand to set the number of nodes as the number of cores
 
 	
