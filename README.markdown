@@ -212,7 +212,7 @@ Example settings file:
 							"Engine"		:"DEBUG",
 							"ASemaphore"	:"ERROR",
 							"Session"		:"ERROR",
-							"Application"	:"ERROR"
+							"Application"	:"ERROR",
 							"Page"			:"DEBUG"
 						},
 		"nodes"	       : 1
