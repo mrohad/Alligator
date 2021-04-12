@@ -13,6 +13,7 @@ If you want to bind to a port under 1024, you'll need to run node with special
 privileges.
 
 # Features
+
 - Handling request parameters easily (for GET and POST)
 - Distributed session management, including timeout
 - Distributed application scope management
@@ -37,7 +38,8 @@ He/She can use the following implicit functions/variables over the context objec
 - `context.application.set(key,value,callbackFunc)` to put anything on the application context
 - `context.application.get(key,callbackFunc)` to get anything from the application context
 
-#Examples
+# Examples
+
 Ex1.jssp:
 
     <? var a = 1+1;?><br/>
@@ -249,6 +251,7 @@ Explanation of properties:
 - `nodes` - number of process running this application server ** currently we support shared memory using memcached! we recommand to set the number of nodes as the number of cores
 
 # Bugs and Contribution
+
 Please let us know if you find any bug or if you would like to contribute code: mrohad.jsf at gmail
 
 Known Bugs - http://github.com/mrohad/Alligator/blob/master/knowBugs.txt
